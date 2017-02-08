@@ -1,19 +1,23 @@
 html, body {
   font-family: 'Open Sans', sans-serif;
-  height: 100%;
+  min-height: 100vh;
   margin: 0;
   font-size: 1em;
   color: #3f4c52;
-}
-
-.wrapper {
-  min-height: 100%;
-  position: relative;
-  padding-bottom: @footer-height;
+  display: flex;
+  flex-direction: column;
 }
 
 .container {
   max-width: 1200px;
   position: relative;
   margin:0 auto;
+  @media @desktop-wide {
+    padding: 0 30px;
+  }
+}
+
+main {
+  flex: 1;
+  margin: 0 0 130px;
 }
