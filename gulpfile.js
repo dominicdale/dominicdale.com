@@ -9,6 +9,8 @@ var browserSync = require('browser-sync').create();
 var gutil = require('gulp-util');
 var htmlmin = require('gulp-htmlmin');
 var smoosher = require('gulp-smoosher');
+var iconfont = require('gulp-iconfont');
+var runTimestamp = Math.round(Date.now()/1000);
 
 var autoprefixerOptions = {
   browsers: ['Firefox < 20', 'ie 8-11', 'iOS 7', 'last 2 Chrome versions']
@@ -47,11 +49,11 @@ gulp.task('autoprefix', function() {
 // uglify
 gulp.task('uglify', function () {
   gulp.src([
-    './Scripts/jquery.js'
+    './src/scripts/scripts.js'
   ])
-  .pipe(concat('compiled.min.js'))
+  .pipe(concat('scripts.min.js'))
   .pipe(uglify())
-  .pipe(gulp.dest('./Scripts'))
+  .pipe(gulp.dest('./dist'))
 });
 
 
@@ -78,11 +80,29 @@ gulp.task('smoosh', function () {
         .pipe(gulp.dest('dist/'));
 });
 
+// Gulp iconfont
+gulp.task('iconFont', function(){
+  return gulp.src(['src/icons/*.svg'])
+    .pipe(iconfont({
+      fontName: 'websiteIcons', // required
+      prependUnicode: true, // recommended option
+      formats: ['ttf', 'eot', 'woff', 'svg'], // default, 'woff2' and 'svg' are available
+      normalize: true,
+      fontHeight: 1001,
+      timestamp: runTimestamp, // recommended to get consistent builds when watching files
+    }))
+      .on('glyphs', function(glyphs, options) {
+        // CSS templating, e.g.
+        console.log(glyphs, options);
+      })
+    .pipe(gulp.dest('dist/fonts/'));
+});
+
 // Watch
 gulp.task('watch', ['browserSync'], function(){
   gulp.watch('./src/css/*.less', ['less']);
   gulp.watch('./dist/style.css', ['autoprefix']);
-  gulp.watch('./Scripts/scripts.js', ['uglify']);
+  gulp.watch('./src/scripts/scripts.js', ['uglify']);
   gulp.watch('./src/views/index.html', ['minify']);
   gulp.watch('./dist/index.html', ['smoosh']);
 });

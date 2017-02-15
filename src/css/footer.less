@@ -2,4 +2,37 @@ footer {
   background-color: #40444d;
   padding: 100px 0;
   color: #FFF;
+  p {
+    font-family: 'Merriweather', serif;
+    font-size: 1.8em;
+    max-width: 700px;
+  }
+  ul.social-icons {
+    font-family: 'iconFont';
+    li {
+      display: inline-block;
+      margin-right: 20px;
+      font-size: 1.5em;
+      &.dribbble {
+        &:before {
+          content: '\EA01';
+        }
+      }
+      &.github {
+        &:before {
+          content: '\EA02';
+        }
+      }
+      &.soundcloud {
+        &:before {
+          content: '\EA03';
+        }
+      }
+      &.youtube {
+        &:before {
+          content: '\EA04';
+        }
+      }
+    }
+  }
 }
