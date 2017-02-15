@@ -2,6 +2,7 @@ html, body {
   font-family: 'Open Sans', sans-serif;
   min-height: 100vh;
   margin: 0;
+  background-color: #eee;
   font-size: 1em;
   color: #3f4c52;
   display: flex;
@@ -23,8 +24,13 @@ main {
 }
 
 .wrapper {
+  background-color: #FFF;
+  box-shadow: 0 0 200px 0 rgba(0,0,0,.1);
+  outline: 50px solid #FFF;
+  transition: all ease .4s;
+  transition-delay: .4s;
   &.shrink {
     transform: scale(.8);
-    .transition;  
+    transition-delay: 0s;
   }
 }
