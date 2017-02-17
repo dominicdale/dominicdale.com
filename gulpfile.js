@@ -8,10 +8,9 @@ var concat = require('gulp-concat');
 var browserSync = require('browser-sync').create();
 var gutil = require('gulp-util');
 var htmlmin = require('gulp-htmlmin');
-var smoosher = require('gulp-smoosher');
 var iconfont = require('gulp-iconfont');
 var runTimestamp = Math.round(Date.now()/1000);
-
+var ngrok = require('ngrok');
 var autoprefixerOptions = {
   browsers: ['Firefox < 20', 'ie 8-11', 'iOS 7', 'last 2 Chrome versions']
 };
@@ -35,7 +34,6 @@ gulp.task('less', function () {
 
 
 // autoprefix
-
 gulp.task('autoprefix', function() {
     gulp.src('./dist/style.css')
       .pipe(autoprefixer({
@@ -44,6 +42,7 @@ gulp.task('autoprefix', function() {
       }))
       .pipe(gulp.dest('./dist/'))
 });
+
 
 
 // uglify
@@ -57,13 +56,18 @@ gulp.task('uglify', function () {
 });
 
 
-// browser reload
 
+// browser reload
 gulp.task('browserSync', function() {
   browserSync.init({
-      proxy: 'dominicdale.local/dist'
+      server: {
+        baseDir: "dist"
+      }
   })
 })
+
+
+
 
 // html minify
 gulp.task('minify', function() {
@@ -73,30 +77,36 @@ gulp.task('minify', function() {
 });
 
 
-// gulp smoosher
-gulp.task('smoosh', function () {
-    gulp.src('/dist/index.html')
-        .pipe(smoosher())
-        .pipe(gulp.dest('dist/'));
-});
+
 
 // Gulp iconfont
 gulp.task('iconFont', function(){
   return gulp.src(['src/icons/*.svg'])
     .pipe(iconfont({
-      fontName: 'websiteIcons', // required
-      prependUnicode: true, // recommended option
-      formats: ['ttf', 'eot', 'woff', 'svg'], // default, 'woff2' and 'svg' are available
+      fontName: 'websiteIcons',
+      prependUnicode: true,
+      formats: ['ttf', 'eot', 'woff', 'svg'],
       normalize: true,
       fontHeight: 1001,
-      timestamp: runTimestamp, // recommended to get consistent builds when watching files
+      timestamp: runTimestamp,
     }))
       .on('glyphs', function(glyphs, options) {
-        // CSS templating, e.g.
         console.log(glyphs, options);
       })
     .pipe(gulp.dest('dist/fonts/'));
 });
+
+
+// ngrok
+gulp.task('ngrok-push', function(cb) {
+  return ngrok.connect(3000, function (err, url) {
+    site = url;
+    console.log('serving your tunnel from: ' + site);
+    cb();
+  });
+});
+
+
 
 // Watch
 gulp.task('watch', ['browserSync'], function(){
@@ -104,9 +114,13 @@ gulp.task('watch', ['browserSync'], function(){
   gulp.watch('./dist/style.css', ['autoprefix']);
   gulp.watch('./src/scripts/scripts.js', ['uglify']);
   gulp.watch('./src/views/index.html', ['minify']);
-  gulp.watch('./dist/index.html', ['smoosh']);
 });
 
 
-// Default task
-gulp.task('default', ['less', 'uglify']);
+// Ngrok
+gulp.task('ngrok', ['browserSync', 'ngrok-push']);
+
+
+
+// Build
+gulp.task('build', ['less', 'autoprefix', 'uglify', 'minify', 'iconFont', 'browserSync']);
