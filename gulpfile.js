@@ -49,6 +49,7 @@ gulp.task('autoprefix', function() {
 // uglify
 gulp.task('uglify', function () {
   gulp.src([
+    './src/scripts/jquery.js',
     './src/scripts/scripts.js'
   ])
   .pipe(concat('scripts.min.js'))
@@ -75,7 +76,7 @@ gulp.task('minify', function() {
 
 // gulp smoosher
 gulp.task('smoosh', function () {
-    gulp.src('/dist/index.html')
+    gulp.src('/dist/*.html')
         .pipe(smoosher())
         .pipe(gulp.dest('dist/'));
 });

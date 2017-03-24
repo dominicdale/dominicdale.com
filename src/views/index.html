@@ -40,13 +40,13 @@
       <section class="gallery" id="work">
         <h2>Work</h2>
         <div class="grid">
-          <figure>
+          <figure data-url="qmple.html" data-color="#c7e8ec">
             <img src="img/qmple_thumb.png" />
           </figure>
-          <figure>
+          <figure data-url="test.html" data-color="#cbbce6">
             <img src="img/factory_thumb.png" />
           </figure>
-          <figure>
+          <figure data-color="#badfdd">
             <img src="img/john_thumb.png" />
           </figure>
           <figure>
@@ -79,7 +79,9 @@
 </div>
 
 <section class="overlay">
-  <button class="close"></button>
+  <div class="close"><span class="line"></span></div>
+  <div class="overlay-loading"></div>
+  <div class="overlay-content"></div>
 </section>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
