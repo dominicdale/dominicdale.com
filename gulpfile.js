@@ -61,7 +61,7 @@ gulp.task('uglify', function () {
 
 gulp.task('browserSync', function() {
   browserSync.init({
-      proxy: 'dominicdale.local/dist'
+      proxy: 'http://localhost:8888/dominicdale.com/dist/'
   })
 })
 
