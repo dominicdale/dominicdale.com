@@ -7,6 +7,12 @@ html, body {
   color: #3f4c52;
   display: flex;
   flex-direction: column;
+  @media @mobile {
+    font-size: .9em;
+  }
+  &.no-scroll {
+    overflow: hidden;
+  }
 }
 
 .container {
@@ -32,5 +38,8 @@ main {
   &.shrink {
     transform: scale(.8);
     transition-delay: 0s;
+    @media @mobile {
+      transform: scale(.9);
+    }
   }
 }

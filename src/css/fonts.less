@@ -13,7 +13,9 @@ h1 {
   font-family: 'Merriweather', serif;
   font-size: 2.45em;
   font-weight: 400;
-  letter-spacing: -1px;
+  @media @tablet {
+    font-size: 2em;
+  }
   &.intro {
     max-width: 660px;
   }

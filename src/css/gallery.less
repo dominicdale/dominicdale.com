@@ -1,18 +1,48 @@
 section.gallery {
   margin-top: 100px;
+  @media @tablet {
+    margin-top: 70px;
+  }
+  @media @mobile {
+    margin-top: 60px;
+  }
   .grid {
     column-count: 3;
     column-gap: 30px;
-    //display: flex;
-    //flex-direction: row;
-    //flex-wrap: wrap;
-    //align-items: flex-start;
+    @media @tablet {
+      column-count: 2;
+    }
+    @media @mobile {
+      column-count: 1;
+    }
   }
   figure {
     background: #efefef;
     overflow: auto;
     margin: 0 0 30px;
-    //flex: 1 1 auto;
+    break-inside: avoid;
+    cursor: pointer;
+    position: relative;
+    &:after {
+      content: 'view more';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 20px;
+      background-color: @dark;
+      color: #FFF;
+      font-size: .7em;
+      text-transform: uppercase;
+      font-weight: 600;
+      transform: translateY(100%);
+      .transition;
+    }
+    &:hover {
+      &:after {
+        transform: translateY(0);
+      }
+    }
     img {
       max-width: 100%;
       width: auto;

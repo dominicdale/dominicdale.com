@@ -3,6 +3,14 @@ header {
   overflow: auto;
   position: relative;
   margin-bottom: 50px;
+  @media @tablet {
+    padding: 50px 0;
+    margin-bottom: 50px;
+  }
+  @media @mobile {
+    padding: 40px 0;
+    margin-bottom: 40px;
+  }
 }
 
 .logo {
@@ -15,6 +23,9 @@ header {
     width: 100px;
     background-color: #f2f2f2;
     display: block;
+    @media @mobile {
+      bottom: -30px;
+    }
   }
   span {
     display: block;
@@ -36,6 +47,9 @@ nav {
   transform: translateY(-50%);
   @media @desktop-wide {
     right: 30px;
+  }
+  @media @tablet {
+    display: none;
   }
   a {
     text-decoration: none;
