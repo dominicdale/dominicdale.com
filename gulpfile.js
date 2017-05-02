@@ -104,8 +104,8 @@ gulp.task('watch', ['browserSync'], function(){
   gulp.watch('./src/css/*.less', ['less']);
   gulp.watch('./dist/style.css', ['autoprefix']);
   gulp.watch('./src/scripts/scripts.js', ['uglify']);
-  gulp.watch('./src/views/index.html', ['minify']);
-  gulp.watch('./dist/index.html', ['smoosh']);
+  gulp.watch('./src/views/*.html', ['minify']);
+  gulp.watch('./dist/*.html', ['smoosh']);
 });
 
 

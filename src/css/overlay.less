@@ -38,7 +38,7 @@
   span.line {
     width: 30px;
     height: 5px;
-    background-color: #FFF;
+    background-color: transparent;
     display: block;
     position: absolute;
     top: 10px;
@@ -54,10 +54,10 @@
       .transition;
     }
     &:before {
-      transform: translateY(-10px);
+      transform: rotate(45deg);
     }
     &:after {
-      transform: translateY(10px);
+      transform: rotate(-45deg);
     }
   }
 }
@@ -73,7 +73,34 @@
     opacity: 1;
     transition-delay: .5s;
   }
+  .overlay-button {
+    float: right;
+    background-color: @dark;
+    padding: 20px 50px;
+    border-radius: 30px;
+    text-decoration: none;
+    color: #FFF;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: .8em;
+  }
   img {
     max-width: 100%;
+    width: 100%;
+    object-fit: cover;
+    margin-bottom: 30px;
+  }
+  h2 {
+    margin-bottom: 10px;
+    float: left;
+    color: #757575;
+  }
+  h3 {
+    max-width: 500px;
+    float: left;
+    clear: both;
+  }
+  .two-col {
+    column-count: 2;
   }
 }
