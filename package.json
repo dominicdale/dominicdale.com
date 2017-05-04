@@ -21,8 +21,12 @@
     "gulp-smoosher": "0.0.9",
     "gulp-uglify": "^2.0.0",
     "gulp-util": "^3.0.7",
+    "gulp-webp": "^2.3.0",
     "ngrok": "^2.2.6",
     "psi": "^3.0.0",
     "run-sequence": "^1.2.2"
+  },
+  "dependencies": {
+    "imagemin-webp": "^4.0.0"
   }
 }

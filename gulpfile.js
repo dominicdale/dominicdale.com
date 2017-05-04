@@ -10,6 +10,7 @@ var gutil = require('gulp-util');
 var htmlmin = require('gulp-htmlmin');
 var smoosher = require('gulp-smoosher');
 var iconfont = require('gulp-iconfont');
+var webp = require('gulp-webp');
 var runTimestamp = Math.round(Date.now()/1000);
 
 var autoprefixerOptions = {
@@ -35,7 +36,6 @@ gulp.task('less', function () {
 
 
 // autoprefix
-
 gulp.task('autoprefix', function() {
     gulp.src('./dist/style.css')
       .pipe(autoprefixer({
@@ -49,7 +49,7 @@ gulp.task('autoprefix', function() {
 // uglify
 gulp.task('uglify', function () {
   gulp.src([
-    './src/scripts/jquery.js',
+    './src/scripts/jquery.min.js',
     './src/scripts/scripts.js'
   ])
   .pipe(concat('scripts.min.js'))
@@ -59,10 +59,9 @@ gulp.task('uglify', function () {
 
 
 // browser reload
-
 gulp.task('browserSync', function() {
   browserSync.init({
-      proxy: 'http://localhost:8888/dominicdale.com/dist/'
+      proxy: 'dominicdale.local/dist'
   })
 })
 
@@ -81,6 +80,8 @@ gulp.task('smoosh', function () {
         .pipe(gulp.dest('dist/'));
 });
 
+
+
 // Gulp iconfont
 gulp.task('iconFont', function(){
   return gulp.src(['src/icons/*.svg'])
@@ -98,6 +99,15 @@ gulp.task('iconFont', function(){
       })
     .pipe(gulp.dest('dist/fonts/'));
 });
+
+// webP
+gulp.task('webp', function () {
+    return gulp.src('src/img/*.{jpg,png}')
+        .pipe(webp())
+        .pipe(gulp.dest('dist/img'));
+});
+
+
 
 // Watch
 gulp.task('watch', ['browserSync'], function(){
