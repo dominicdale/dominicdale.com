@@ -23,6 +23,7 @@ section.gallery {
     break-inside: avoid;
     cursor: pointer;
     position: relative;
+    transform: translateX(0); //chrome overflow bug
     &:after {
       content: 'view more';
       position: absolute;
@@ -45,9 +46,9 @@ section.gallery {
     }
     img {
       max-width: 100%;
-      width: auto;
+      width: ~"calc(100% - 50px)";
       float: right;
-      padding:30px 0 0 30px;
+      padding: 50px 0 0 0;
     }
     &:nth-child(1) {
       background-color: #c7e8ec;
