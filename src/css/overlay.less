@@ -95,6 +95,8 @@
   }
   p {
     font-size: 1.15em;
+    max-width: 600px;
+    margin-bottom: @content-margin;
   }
   .two-col {
     column-count: 2;
@@ -108,9 +110,17 @@
       display: block;
       max-width: 270px;
       float: left;
+      @media @tablet {
+        float: none;
+        max-width: none;
+      }
       &:last-child {
         float: right;
         max-width: ~"calc(100% - 300px)";
+        @media @mobile {
+          float: none;
+          max-width: none;
+        }
       }
     }
   }
