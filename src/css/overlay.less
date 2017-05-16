@@ -22,6 +22,10 @@
   height: 30px;
   width: 30px;
   cursor: pointer;
+  @media @tablet {
+    top: 30px;
+    right: 30px;
+  }
   span.line {
     width: 30px;
     height: 5px;
@@ -65,12 +69,16 @@
     padding: 20px 50px;
     border-radius: 50px;
     text-decoration: none;
-    color: lighten(@text, 20%);
-    text-transform: uppercase;
+    color: lighten(@text, 10%);
     font-weight: 700;
-    font-size: .9em;
     border: 2px solid;
+    display: inline-block;
+    letter-spacing: 0.03em;
     .transition;
+    @media @tablet-l {
+      float: none;
+      margin-bottom: 50px;
+    }
     &:hover {
       color: #FFF;
       background-color: @dark;
@@ -81,10 +89,12 @@
     max-width: 100%;
     width: 100%;
     margin-bottom: @content-margin;
+    @media @tablet {
+      margin-bottom: @content-margin - 20px;
+    }
   }
   h2 {
     margin-bottom: 15px;
-    float: left;
     color: #757575;
   }
   h3 {
@@ -92,11 +102,24 @@
     float: left;
     clear: both;
     margin-bottom: @content-margin;
+    @media @tablet-l {
+      float: none;
+      margin-bottom: 20px;
+    }
   }
   p {
     font-size: 1.15em;
     max-width: 600px;
     margin-bottom: @content-margin;
+    @media @tablet {
+      margin-bottom: @content-margin - 20px;
+    }
+    a {
+      font-weight: 700;
+      color: inherit;
+      border-bottom: 2px solid fade(@dark, 20%);
+      text-decoration: none;
+    }
   }
   .two-col {
     column-count: 2;
@@ -106,18 +129,24 @@
   .mobile-tablet-container {
     position: relative;
     overflow: auto;
+    margin-bottom: @content-margin;
+    &:last-child {
+      margin-bottom: 0;
+    }
     img {
       display: block;
       max-width: 270px;
+      width: 100%;
       float: left;
       @media @tablet {
         float: none;
-        max-width: none;
+        //max-width: none;
+        margin: 0 auto 30px;
       }
       &:last-child {
         float: right;
         max-width: ~"calc(100% - 300px)";
-        @media @mobile {
+        @media @tablet {
           float: none;
           max-width: none;
         }

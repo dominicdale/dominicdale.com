@@ -9,8 +9,11 @@ section.gallery {
   .grid {
     column-count: 3;
     column-gap: 30px;
-    @media @tablet {
+    @media @desktop {
       column-count: 2;
+    }
+    @media @tablet {
+      column-gap: 20px;
     }
     @media @mobile {
       column-count: 1;
@@ -23,7 +26,13 @@ section.gallery {
     break-inside: avoid;
     cursor: pointer;
     position: relative;
+    opacity: 0;
+    animation: fade .8s linear;
+    animation-fill-mode: forwards;
     transform: translateX(0); //chrome overflow bug
+    @media @tablet {
+      margin: 0 0 20px;
+    }
     &:after {
       content: 'view more';
       position: absolute;
@@ -49,18 +58,33 @@ section.gallery {
       width: ~"calc(100% - 50px)";
       float: right;
       padding: 50px 0 0 0;
+      // opacity: 0;
+      // animation: gallery-img .7s linear;
+      // animation-fill-mode: forwards;
+      // animation-delay: 1s;
     }
     &:nth-child(1) {
       background-color: #c7e8ec;
+      animation-delay: 1s;
     }
     &:nth-child(2) {
       background-color: #cbbce6;
+      animation-delay: 1.1s;
     }
     &:nth-child(3) {
       background-color: #badfdd;
+      animation-delay: 1.2s;
     }
     &:nth-child(4) {
       background-color: #cbbce6;
+      animation-delay: 1.3s;
+    }
+    &:nth-child(5) {
+      background-color: #dbf1f0;
+      animation-delay: 1.4s;
+    }
+    &:nth-child(6) {
+      animation-delay: 1.5s;
     }
   }
 }

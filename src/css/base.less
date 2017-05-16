@@ -8,7 +8,7 @@ html, body {
   display: flex;
   flex-direction: column;
   @media @mobile {
-    font-size: .9em;
+    font-size: .95em;
   }
   &.no-scroll {
     overflow: hidden;
@@ -20,7 +20,13 @@ html, body {
   position: relative;
   margin:0 auto;
   @media @desktop-wide {
-    padding: 0 30px;
+    padding: 0 @padding;
+  }
+  @media @desktop {
+    padding: 0 @padding - 10px;
+  }
+  @media @tablet {
+    padding: 0 @padding - 20px;
   }
 }
 
