@@ -10,13 +10,14 @@
   transition: all ease .4s;
   transition-delay: .3s;
   overflow-y: scroll;
+  overflow-x: hidden;
   &.slide {
     transform: translateY(0);
   }
 }
 
 .close {
-  position: absolute;
+  position: fixed;
   top: 50px;
   right: 50px;
   height: 30px;
@@ -114,6 +115,10 @@
     @media @tablet {
       margin-bottom: @content-margin - 20px;
     }
+    &:last-of-type {
+      text-align: right;
+      float: right;
+    }
     a {
       font-weight: 700;
       color: inherit;
@@ -125,6 +130,21 @@
     column-count: 2;
     margin-bottom: @content-margin;
     column-gap: 50px;
+  }
+  .diagonal-bg {
+    position: relative;
+    margin: 190px 0;
+    &:before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: 0;
+      bottom: -100px;
+      left: 0;
+      background-color: rgba(255,255,255,.3);
+      transform: scaleX(5) rotate(-20deg);
+
+    }
   }
   .mobile-tablet-container {
     position: relative;
