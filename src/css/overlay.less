@@ -17,12 +17,14 @@
 }
 
 .close {
-  position: fixed;
+  position: sticky;
   top: 50px;
   right: 50px;
   height: 30px;
   width: 30px;
+  float: right;
   cursor: pointer;
+  z-index: 100;
   @media @tablet {
     top: 30px;
     right: 30px;
@@ -115,7 +117,7 @@
     @media @tablet {
       margin-bottom: @content-margin - 20px;
     }
-    &:last-of-type {
+    &:last-of-type:not(:first-of-type) {
       text-align: right;
       float: right;
     }
@@ -125,11 +127,6 @@
       border-bottom: 2px solid fade(@dark, 20%);
       text-decoration: none;
     }
-  }
-  .two-col {
-    column-count: 2;
-    margin-bottom: @content-margin;
-    column-gap: 50px;
   }
   .diagonal-bg {
     position: relative;
@@ -141,9 +138,15 @@
       right: 0;
       bottom: -100px;
       left: 0;
-      background-color: rgba(255,255,255,.3);
+      //background-color: rgba(255,255,255,.3);
+      background-color: @dark;
       transform: scaleX(5) rotate(-20deg);
-
+    }
+    @media @tablet {
+      margin: 0;
+      &:before {
+        content: none;
+      }
     }
   }
   .mobile-tablet-container {
@@ -171,6 +174,42 @@
           max-width: none;
         }
       }
+    }
+  }
+  .split {
+    margin-bottom: @content-margin + 50px;
+    clear: both;
+    overflow: auto;
+    @media @desktop {
+      margin-bottom: 30px;
+    }
+    img {
+      float: left;
+      margin: 0 50px 0 0;
+      @media @desktop {
+        float: none;
+        margin: 0 0 30px 0;
+      }
+    }
+    p {
+      max-width: none;
+    }
+    &:nth-of-type(even) {
+      text-align: right;
+      @media @desktop {
+        text-align: left;
+      }
+      img {
+        float: right;
+        margin: 0 0 0 50px;
+        @media @desktop {
+          float: none;
+          margin: 0 0 30px 0;
+        }
+      }
+    }
+    &:first-of-type {
+      padding-top: 50px;
     }
   }
 }

@@ -121,4 +121,4 @@ gulp.task('watch', ['browserSync'], function(){
 
 
 // Default task
-gulp.task('default', ['less', 'uglify']);
+gulp.task('default', ['less', 'uglify', 'autoprefix', 'minify', 'smoosh', 'watch']);

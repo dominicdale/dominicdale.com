@@ -15,6 +15,7 @@ $(function(){
     $('body').toggleClass('no-scroll');
     wrapper.toggleClass('shrink');
     overlay.toggleClass('slide');
+    overlay.scrollTop(0);
     overlay.css('background-color', $(this).data('color'));
     $('.close').toggleClass('active');
     overlayLoading.toggleClass('active');
