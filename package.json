@@ -27,6 +27,19 @@
     "run-sequence": "^1.2.2"
   },
   "dependencies": {
-    "imagemin-webp": "^4.0.0"
+    "browser-sync": "^2.18.12",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-htmlmin": "^3.0.0",
+    "gulp-iconfont": "^8.0.1",
+    "gulp-less": "^3.3.0",
+    "gulp-smoosher": "0.0.9",
+    "gulp-uglify": "^3.0.0",
+    "gulp-util": "^3.0.8",
+    "gulp-webp": "^2.3.0",
+    "imagemin-webp": "^4.0.0",
+    "path": "^0.12.7",
+    "pump": "^1.0.2"
   }
 }
