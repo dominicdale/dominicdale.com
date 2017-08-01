@@ -10,8 +10,15 @@ html, body {
   @media @mobile {
     font-size: .95em;
   }
-  &.no-scroll {
+  &.gallery-active {
     overflow: hidden;
+    .wrapper {
+      transform: scale(.8);
+      transition-delay: 0s;
+      @media @mobile {
+        transform: scale(.9);
+      }
+    }
   }
 }
 
