@@ -1,23 +1,21 @@
 $(function(){
 
   // variables
-
+  body = $('body');
   figure = $('.gallery figure');
-  wrapper = $('.wrapper');
   overlay = $('.overlay');
-  overlayContent = $('.overlay-content');
-  overlayLoading = $('.overlay-loading');
+  overlayContent = $('.overlay .overlay-content');
+  overlayLoading = $('.overlay .overlay-loading');
+  overlayClose = $('.overlay .close');
 
 
   // Click on gallery item
-
   figure.click(function(){
-    $('body').toggleClass('no-scroll');
-    wrapper.toggleClass('shrink');
-    overlay.toggleClass('slide');
-    overlay.scrollTop(0);
-    overlay.css('background-color', $(this).data('color'));
-    $('.close').toggleClass('active');
+    body.toggleClass('gallery-active');
+    overlay
+      .toggleClass('slide')
+      .scrollTop(0)
+      .css('background-color', $(this).data('color'));
     overlayLoading.toggleClass('active');
     overlayContent.load($(this).data('url'), function(){
       setTimeout(function(){
@@ -25,22 +23,19 @@ $(function(){
         overlayContent.addClass('active');
       }, 1500)
     });
-  })
+  });
 
 
   // Close gallery overlay
-
-  $('.close').click(function(){
-    $('body').toggleClass('no-scroll');
+  overlayClose.click(function(){
+    body.toggleClass('gallery-active');
     overlay.toggleClass('slide');
-    wrapper.toggleClass('shrink');
     overlayLoading.removeClass('active');
     overlayContent.removeClass('active');
   })
 
 
   // smooth scrolling
-
   $('a[href*="#"]:not([href="#"])').click(function() {
     if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
       var target = $(this.hash);
