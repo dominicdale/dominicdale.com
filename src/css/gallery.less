@@ -31,6 +31,8 @@ section.gallery {
     animation: fade .8s linear;
     animation-fill-mode: forwards;
     transform: translateX(0); //chrome overflow bug
+    -webkit-backface-visibility: hidden;
+  	-webkit-transform: scale(1);
     @media @tablet {
       margin: 0 0 20px;
     }
