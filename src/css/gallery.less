@@ -53,16 +53,28 @@ section.gallery {
       // animation-fill-mode: forwards;
       // animation-delay: 1s;
     }
+    // figcaption {
+    //   position: absolute;
+    //   left: 0;
+    //   bottom: 0;
+    //   padding: 20px 40px;
+    //   background-color: @dark;
+    //   color: #FFF;
+    //   font-weight: 600;
+    //   transform: translateY(100%);
+    //   text-transform: lowercase;
+    //   .transition;
+    // }
     figcaption {
       position: absolute;
-      left: 0;
+      top: 0;
+      right: 0;
       bottom: 0;
-      padding: 20px 40px;
+      left: 0;
       background-color: @dark;
       color: #FFF;
       font-weight: 600;
-      transform: translateY(100%);
-      text-transform: lowercase;
+      transform: translateX(100%);
       .transition;
     }
     &:nth-child(1) {

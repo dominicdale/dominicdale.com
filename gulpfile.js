@@ -12,6 +12,7 @@ var smoosher = require('gulp-smoosher');
 var iconfont = require('gulp-iconfont');
 var webp = require('gulp-webp');
 var runTimestamp = Math.round(Date.now()/1000);
+var inline = require('gulp-inline')
 
 var autoprefixerOptions = {
   browsers: ['Firefox < 20', 'ie 8-11', 'iOS 7', 'last 2 Chrome versions']
@@ -26,7 +27,7 @@ gulp.task('less', function () {
       compress: true
     }))
     .pipe(autoprefixer(autoprefixerOptions))
-    .pipe(gulp.dest('./dist/'))
+    .pipe(gulp.dest('./'))
     .pipe(browserSync.reload({
       stream: true
     }))
@@ -37,12 +38,12 @@ gulp.task('less', function () {
 
 // autoprefix
 gulp.task('autoprefix', function() {
-    gulp.src('./dist/style.css')
+    gulp.src('./style.css')
       .pipe(autoprefixer({
           browsers: ['Firefox < 20', 'ie 8-11', 'iOS 7', 'last 2 Chrome versions'],
           cascade: false
       }))
-      .pipe(gulp.dest('./dist/'))
+      .pipe(gulp.dest('./'))
 });
 
 
@@ -54,14 +55,14 @@ gulp.task('uglify', function () {
   ])
   .pipe(concat('scripts.min.js'))
   .pipe(uglify())
-  .pipe(gulp.dest('./dist'))
+  .pipe(gulp.dest('./'))
 });
 
 
 // browser reload
 gulp.task('browserSync', function() {
   browserSync.init({
-      proxy: 'dominicdale.local/dist'
+      proxy: 'dominicdale.local'
       //proxy: 'http://localhost:8888/dominicdale.com/dist/'
   })
 })
@@ -70,16 +71,16 @@ gulp.task('browserSync', function() {
 gulp.task('minify', function() {
   return gulp.src('src/views/*.html')
     .pipe(htmlmin({collapseWhitespace: true}))
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('./'));
 });
 
 
-// gulp smoosher
-gulp.task('smoosh', function () {
-    gulp.src('/dist/*.html')
-        .pipe(smoosher())
-        .pipe(gulp.dest('dist/'));
-});
+// // gulp smoosher
+// gulp.task('smoosh', function () {
+//     gulp.src('./*.html')
+//         .pipe(smoosher())
+//         .pipe(gulp.dest('./'));
+// });
 
 
 
@@ -98,14 +99,27 @@ gulp.task('iconFont', function(){
         // CSS templating, e.g.
         console.log(glyphs, options);
       })
-    .pipe(gulp.dest('dist/fonts/'));
+    .pipe(gulp.dest('./fonts/'));
 });
 
 // webP
 gulp.task('webp', function () {
     return gulp.src('src/img/*.{jpg,png}')
         .pipe(webp())
-        .pipe(gulp.dest('dist/img'));
+        .pipe(gulp.dest('./img'));
+});
+
+
+// gulp inline
+gulp.task('inline', function(){
+  gulp.src('./index.html')
+    .pipe(inline({
+      base: './',
+      js: uglify,
+      css: [autoprefixer({ browsers:['last 2 versions'] })],
+      disabledTypes: ['svg', 'img', 'js'], // Only inline css files 
+    }))
+    .pipe(gulp.dest('./'));
 });
 
 
@@ -113,12 +127,13 @@ gulp.task('webp', function () {
 // Watch
 gulp.task('watch', ['browserSync'], function(){
   gulp.watch('./src/css/*.less', ['less']);
-  gulp.watch('./dist/style.css', ['autoprefix']);
+  // gulp.watch('./style.css', ['autoprefix']);
+  gulp.watch('./style.css', ['inline']);
   gulp.watch('./src/scripts/scripts.js', ['uglify']);
   gulp.watch('./src/views/*.html', ['minify']);
-  gulp.watch('./dist/*.html', ['smoosh']);
+  // gulp.watch('./*.html', ['smoosh']);
 });
 
 
 // Default task
-gulp.task('default', ['less', 'uglify', 'autoprefix', 'minify', 'smoosh', 'watch']);
+gulp.task('default', ['less', 'uglify', 'inline', 'minify', 'watch']);
