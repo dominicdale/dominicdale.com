@@ -26,8 +26,8 @@ h1 {
     a {
       color: inherit;
       text-decoration: none;
-      // border-bottom: 3px solid #eee;
       position: relative;
+      z-index: 1;
       .transition;
       &:before {
         content: '';
@@ -37,7 +37,7 @@ h1 {
         bottom: 0;
         left: 0;
         background-color: @dark;
-        transform: scaleY(0) scaleX(1.1) rotate(0);
+        transform: scaleY(0) scaleX(1.1) skew(0);
         z-index: -1;
         .transition;
       }
@@ -54,7 +54,7 @@ h1 {
       &:hover {
         color: #FFF;
         &:before {
-          transform: scaleY(1.3) scaleX(1.15) rotate(-2deg);
+          transform: scaleY(1.3) scaleX(1.15) skew(-10deg);
         }
         &:after {
           opacity: 0;
@@ -84,7 +84,7 @@ h3 {
 }
 
 h4 {
-  font-size: 1.15em;
+  font-size: 1.3em;
   margin-bottom: 20px;
 }
 
