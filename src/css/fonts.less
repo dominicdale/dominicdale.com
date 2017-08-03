@@ -26,7 +26,40 @@ h1 {
     a {
       color: inherit;
       text-decoration: none;
-      border-bottom: 3px solid #eee;
+      // border-bottom: 3px solid #eee;
+      position: relative;
+      .transition;
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: @dark;
+        transform: scaleY(0) scaleX(1.1) rotate(0);
+        z-index: -1;
+        .transition;
+      }
+      &:after {
+        content: '';
+        position: absolute;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        background-color: #eee;
+        height: 3px;
+        .transition;
+      }
+      &:hover {
+        color: #FFF;
+        &:before {
+          transform: scaleY(1.3) scaleX(1.15) rotate(-2deg);
+        }
+        &:after {
+          opacity: 0;
+        }
+      }
     }
   }
 }

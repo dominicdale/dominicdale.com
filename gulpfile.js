@@ -62,8 +62,8 @@ gulp.task('uglify', function () {
 // browser reload
 gulp.task('browserSync', function() {
   browserSync.init({
-      proxy: 'dominicdale.local'
-      //proxy: 'http://localhost:8888/dominicdale.com/dist/'
+      // proxy: 'dominicdale.local'
+      proxy: 'http://localhost:8888/dominicdale.com/'
   })
 })
 
@@ -128,7 +128,7 @@ gulp.task('inline', function(){
 gulp.task('watch', ['browserSync'], function(){
   gulp.watch('./src/css/*.less', ['less']);
   // gulp.watch('./style.css', ['autoprefix']);
-  gulp.watch('./style.css', ['inline']);
+  // gulp.watch('./style.css', ['inline']);
   gulp.watch('./src/scripts/scripts.js', ['uglify']);
   gulp.watch('./src/views/*.html', ['minify']);
   // gulp.watch('./*.html', ['smoosh']);
@@ -136,4 +136,4 @@ gulp.task('watch', ['browserSync'], function(){
 
 
 // Default task
-gulp.task('default', ['less', 'uglify', 'inline', 'minify', 'watch']);
+gulp.task('default', ['less', 'uglify', 'minify', 'watch']);

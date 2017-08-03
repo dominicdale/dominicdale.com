@@ -7,6 +7,7 @@ $(function(){
   overlayContent = $('.overlay .overlay-content');
   overlayLoading = $('.overlay .overlay-loading');
   overlayClose = $('.overlay .close');
+  figureColor = figure.attr('#data-color');
 
 
   // Click on gallery item
@@ -33,6 +34,9 @@ $(function(){
     overlayLoading.removeClass('active');
     overlayContent.removeClass('active');
   })
+
+
+  // Set figcaption colour
 
 
   // smooth scrolling
