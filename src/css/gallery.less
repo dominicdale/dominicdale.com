@@ -64,42 +64,54 @@ section.gallery {
       color: #FFF;
       padding: 30px;
       font-weight: 600;
-      font-size: 2em;
+      font-size: 1.8em;
       display: flex;
       align-items: flex-end;
-      flex-direction: column;
       transform: translateX(100%);
       transition: all ease .2s;
       transition-delay: .1s;
-      &:after {
-        content: 'view more';
-        font-size: .5em;
-        display: block;
-      }
     }
     &:nth-child(1) {
-      background-color: #c7e8ec;
+      background-color: #d6c9e2;
       animation-delay: 1s;
+      figcaption {
+        background-color: darken(#d6c9e2, 10%);
+      }
     }
     &:nth-child(2) {
       background-color: #cbbce6;
       animation-delay: 1.1s;
+      figcaption {
+        background-color: darken(#cbbce6, 10%);
+      }
     }
     &:nth-child(3) {
       background-color: #d1e1af;
       animation-delay: 1.2s;
+      figcaption {
+        background-color: darken(#d1e1af, 10%);
+      }
     }
     &:nth-child(4) {
       background-color: #badfdd;
       animation-delay: 1.3s;
+      figcaption {
+        background-color: darken(#badfdd, 10%);
+      }
     }
     &:nth-child(5) {
       background-color: #bde1d0;
       animation-delay: 1.4s;
+      figcaption {
+        background-color: darken(#bde1d0, 10%);
+      }
     }
     &:nth-child(6) {
       animation-delay: 1.5s;
       background-color: #b9e4e7;
+      figcaption {
+        background-color: darken(#b9e4e7, 10%);
+      }
     }
   }
 }

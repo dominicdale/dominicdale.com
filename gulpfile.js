@@ -8,7 +8,6 @@ var concat = require('gulp-concat');
 var browserSync = require('browser-sync').create();
 var gutil = require('gulp-util');
 var htmlmin = require('gulp-htmlmin');
-var smoosher = require('gulp-smoosher');
 var iconfont = require('gulp-iconfont');
 var webp = require('gulp-webp');
 var runTimestamp = Math.round(Date.now()/1000);
@@ -62,8 +61,8 @@ gulp.task('uglify', function () {
 // browser reload
 gulp.task('browserSync', function() {
   browserSync.init({
-      // proxy: 'dominicdale.local'
-      proxy: 'http://localhost:8888/dominicdale.com/'
+      proxy: 'dominicdale.local'
+      // proxy: 'http://localhost:8888/dominicdale.com/'
   })
 })
 
@@ -73,14 +72,6 @@ gulp.task('minify', function() {
     .pipe(htmlmin({collapseWhitespace: true}))
     .pipe(gulp.dest('./'));
 });
-
-
-// // gulp smoosher
-// gulp.task('smoosh', function () {
-//     gulp.src('./*.html')
-//         .pipe(smoosher())
-//         .pipe(gulp.dest('./'));
-// });
 
 
 
@@ -96,11 +87,11 @@ gulp.task('iconFont', function(){
       timestamp: runTimestamp, // recommended to get consistent builds when watching files
     }))
       .on('glyphs', function(glyphs, options) {
-        // CSS templating, e.g.
         console.log(glyphs, options);
       })
     .pipe(gulp.dest('./fonts/'));
 });
+
 
 // webP
 gulp.task('webp', function () {
@@ -111,7 +102,7 @@ gulp.task('webp', function () {
 
 
 // gulp inline
-gulp.task('inline', function(){
+gulp.task('inline', ['minify'], function(){
   gulp.src('./index.html')
     .pipe(inline({
       base: './',
@@ -123,6 +114,14 @@ gulp.task('inline', function(){
 });
 
 
+// html minify
+gulp.task('minify', function() {
+  return gulp.src('src/views/*.html')
+    .pipe(htmlmin({collapseWhitespace: true}))
+    .pipe(gulp.dest('./'));
+});
+
+
 
 // Watch
 gulp.task('watch', ['browserSync'], function(){
@@ -130,10 +129,9 @@ gulp.task('watch', ['browserSync'], function(){
   // gulp.watch('./style.css', ['autoprefix']);
   // gulp.watch('./style.css', ['inline']);
   gulp.watch('./src/scripts/scripts.js', ['uglify']);
-  gulp.watch('./src/views/*.html', ['minify']);
-  // gulp.watch('./*.html', ['smoosh']);
+  gulp.watch('./src/views/*.html', ['inline']);
 });
 
 
 // Default task
-gulp.task('default', ['less', 'uglify', 'minify', 'watch']);
+gulp.task('default', ['less', 'uglify', 'inline', 'watch']);
