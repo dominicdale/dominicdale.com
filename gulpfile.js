@@ -96,7 +96,9 @@ gulp.task('iconFont', function(){
 // webP
 gulp.task('webp', function () {
     return gulp.src('src/img/*.{jpg,png}')
-        .pipe(webp())
+        .pipe(webp({
+          // quality: 80
+        }))
         .pipe(gulp.dest('./img'));
 });
 
@@ -108,7 +110,7 @@ gulp.task('inline', ['minify'], function(){
       base: './',
       js: uglify,
       css: [autoprefixer({ browsers:['last 2 versions'] })],
-      disabledTypes: ['svg', 'img', 'js'], // Only inline css files 
+      disabledTypes: ['svg', 'img', 'js'], // Only inline css files
     }))
     .pipe(gulp.dest('./'));
 });
