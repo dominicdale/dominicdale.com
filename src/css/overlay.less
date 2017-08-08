@@ -17,6 +17,7 @@
 }
 
 .close {
+  position: fixed; //fallback
   position: sticky;
   top: 50px;
   right: 50px;
@@ -88,7 +89,7 @@
       border-color: @dark;
     }
   }
-  img.main {
+  img.main, picture {
     max-width: 100%;
     width: 100%;
     margin-bottom: @content-margin;
