@@ -76,12 +76,10 @@
     color: lighten(@text, 10%);
     font-weight: 700;
     border: 2px solid;
-    display: inline-block;
     letter-spacing: 0.03em;
     .transition;
     @media @tablet-l {
-      float: none;
-      margin-bottom: 50px;
+      display: none;
     }
     &:hover {
       color: #FFF;
@@ -105,7 +103,7 @@
     max-width: 500px;
     float: left;
     clear: both;
-    margin-bottom: @content-margin;
+    margin-bottom: 30px;
     @media @tablet-l {
       float: none;
       margin-bottom: 20px;
@@ -115,6 +113,7 @@
     font-size: 1.15em;
     max-width: 600px;
     margin-bottom: @content-margin;
+    clear: both;
     @media @tablet {
       margin-bottom: @content-margin - 20px;
     }
@@ -178,11 +177,14 @@
     }
   }
   .split {
-    margin-bottom: @content-margin + 50px;
+    margin-bottom: @content-margin + 80px;
     clear: both;
     overflow: auto;
     @media @desktop {
       margin-bottom: 30px;
+    }
+    &:last-child {
+      margin-bottom: 0;
     }
     img {
       float: left;
@@ -195,14 +197,24 @@
     p {
       max-width: none;
       margin: 0 0 30px;
+      clear: none;
+    }
+    .link-container {
+      border-top: 2px solid rgba(0,0,0,.05);
+      overflow: auto;
+      padding-top: 30px;
+      display: inline-block;
     }
     a {
       font-weight: 600;
       text-decoration: none;
-      margin-right: 10px;
+      margin-right: 20px;
       color: inherit;
       text-transform: uppercase;
-      border-bottom: 2px solid;
+      font-size: .9em;
+      &:last-child {
+        margin: 0;
+      }
     }
     &:nth-of-type(even) {
       text-align: right;

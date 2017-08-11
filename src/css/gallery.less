@@ -36,13 +36,16 @@ section.gallery {
     @media @tablet {
       margin: 0 0 20px;
     }
-    &:hover {
+    &:hover, &.hover {
       img {
         transform: translateY(30%);
       }
       figcaption {
         transform: translateY(0);
       }
+    }
+    &.hover {
+      min-height: 350px;
     }
     img {
       max-width: 100%;
