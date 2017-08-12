@@ -9,7 +9,6 @@ section.gallery {
   .grid {
     column-count: 3;
     column-gap: 30px;
-    max-height: 1200px;
     @media @desktop {
       column-count: 2;
     }
@@ -97,6 +96,10 @@ section.gallery {
     &:nth-child(4) {
       background-color: #badfdd;
       animation-delay: 1.3s;
+      break-after: column;
+      @media @tablet {
+        break-after: auto;
+      }
       figcaption {
         background-color: darken(#badfdd, 10%);
       }
