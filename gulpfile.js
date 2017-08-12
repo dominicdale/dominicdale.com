@@ -131,7 +131,7 @@ gulp.task('watch', ['browserSync'], function(){
   // gulp.watch('./style.css', ['autoprefix']);
   // gulp.watch('./style.css', ['inline']);
   gulp.watch('./src/scripts/scripts.js', ['uglify']);
-  // gulp.watch('./src/views/*.html', ['inline']);
+  gulp.watch('./src/views/*.html', ['inline']);
 });
 
 
